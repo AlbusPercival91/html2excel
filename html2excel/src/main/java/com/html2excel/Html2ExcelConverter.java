@@ -23,15 +23,16 @@ public class Html2ExcelConverter {
 		try (Scanner scan = new Scanner(System.in)) {
 			String pathName = scan.nextLine();
 
-			Document doc = Jsoup.parse(new File(pathName), "UTF-8");
+			Document doc = htmlParse(pathName);
 
 			Element table = selectTable(doc);
 
 			Workbook workbook = new XSSFWorkbook();
 			Sheet sheet = createSheet(workbook);
-			Row headerRow = createHeaderRow(sheet);
 
-			Elements ths = createHeaderRow(table, headerRow);
+			Row row = createRow(sheet);
+
+			Elements ths = createHeaderRow(table, row);
 
 			createDataRows(table, sheet, ths);
 
@@ -41,6 +42,11 @@ public class Html2ExcelConverter {
 		}
 
 		logger.info("Done, saved Excel File in your Desktop");
+	}
+
+	private static Document htmlParse(String pathName) throws IOException {
+		Document doc = Jsoup.parse(new File(pathName), "UTF-8");
+		return doc;
 	}
 
 	private static Element selectTable(Document doc) {
@@ -53,13 +59,14 @@ public class Html2ExcelConverter {
 		return sheet;
 	}
 
-	private static Row createHeaderRow(Sheet sheet) {
+	private static Row createRow(Sheet sheet) {
 		Row headerRow = sheet.createRow(0);
 		return headerRow;
 	}
 
 	private static Elements createHeaderRow(Element table, Row headerRow) {
 		Elements ths = table.select("tr").first().select("th, td");
+
 		for (int i = 0; i < ths.size(); i++) {
 			Cell headerCell = headerRow.createCell(i);
 			headerCell.setCellValue(ths.get(i).text());
@@ -69,6 +76,7 @@ public class Html2ExcelConverter {
 
 	private static void createDataRows(Element table, Sheet sheet, Elements ths) {
 		Elements rows = table.select("tr");
+
 		for (int i = 1; i < rows.size(); i++) {
 			Row row = sheet.createRow(i);
 			Elements cols = rows.get(i).select("td");
@@ -97,6 +105,7 @@ public class Html2ExcelConverter {
 
 	private static void convertToExcel(Workbook workbook) throws IOException {
 		String desktopPath = System.getProperty("user.home") + "/Desktop/";
+
 		try (FileOutputStream fos = new FileOutputStream(desktopPath + "ExcelOutput.xlsx")) {
 			workbook.write(fos);
 		} finally {
