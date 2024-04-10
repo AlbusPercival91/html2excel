@@ -1,8 +1,0 @@
-java.io.FileNotFoundException: ExcelOutput (Не удается найти указанный файл)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
-	at org.jsoup.helper.DataUtil.load(DataUtil.java:84)
-	at org.jsoup.helper.DataUtil.load(DataUtil.java:66)
-	at org.jsoup.Jsoup.parse(Jsoup.java:149)
-	at com.html2excel.Html2ExcelConverter.main(Html2ExcelConverter.java:26)
