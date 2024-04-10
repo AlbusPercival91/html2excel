@@ -25,7 +25,7 @@ public class Html2ExcelConverter {
 
 			Document doc = Jsoup.parse(new File(pathName), "UTF-8");
 
-			Element table = findTable(doc);
+			Element table = selectTable(doc);
 
 			Workbook workbook = new XSSFWorkbook();
 			Sheet sheet = createSheet(workbook);
@@ -43,7 +43,7 @@ public class Html2ExcelConverter {
 		logger.info("Done, saved Excel File in your Desktop");
 	}
 
-	private static Element findTable(Document doc) {
+	private static Element selectTable(Document doc) {
 		Element table = doc.select("table").first();
 		return table;
 	}
