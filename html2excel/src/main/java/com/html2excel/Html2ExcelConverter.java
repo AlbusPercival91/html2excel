@@ -27,14 +27,7 @@ public class Html2ExcelConverter {
 
 			Element table = selectTable(doc);
 
-			Workbook workbook = new XSSFWorkbook();
-			Sheet sheet = createSheet(workbook);
-
-			Row row = createRow(sheet);
-
-			Elements ths = createHeaderRow(table, row);
-
-			createDataRows(table, sheet, ths);
+			Workbook workbook = createWorkbook(table);
 
 			convertToExcel(workbook);
 		} catch (IOException e) {
@@ -52,6 +45,15 @@ public class Html2ExcelConverter {
 	private static Element selectTable(Document doc) {
 		Element table = doc.select("table").first();
 		return table;
+	}
+
+	private static Workbook createWorkbook(Element table) {
+		Workbook workbook = new XSSFWorkbook();
+		Sheet sheet = createSheet(workbook);
+		Row row = createRow(sheet);
+		Elements ths = createHeaderRow(table, row);
+		createDataRows(table, sheet, ths);
+		return workbook;
 	}
 
 	private static Sheet createSheet(Workbook workbook) {
