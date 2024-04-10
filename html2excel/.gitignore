@@ -6,7 +6,8 @@ target/
 /scrap
 /scrap.sql
 /logs
-.log
+*.log
+
 
 
 ### STS ###
