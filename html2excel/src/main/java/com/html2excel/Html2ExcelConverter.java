@@ -67,7 +67,7 @@ public class Html2ExcelConverter {
 	}
 
 	private static Elements createHeaderRow(Element table, Row headerRow) {
-		Elements ths = table.select("tr").first().select("th, td");
+		Elements ths = table.select("tr").first().select("th, td").next();
 
 		for (int i = 0; i < ths.size(); i++) {
 			Cell headerCell = headerRow.createCell(i);
