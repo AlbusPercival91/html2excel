@@ -83,14 +83,8 @@ public class Html2ExcelConverter {
 			Row row = sheet.createRow(i);
 			Elements cols = rows.get(i).select("td");
 
-			int startIdx = 0;
-			// Check if the first cell is empty and shift cells if necessary
-			if (i == 1 && cols.get(0).text().isEmpty()) {
-				startIdx = -1;
-			}
-
 			for (int j = 0; j < cols.size(); j++) {
-				Cell cell = row.createCell(j + startIdx);
+				Cell cell = row.createCell(j);
 				String cellValue = cols.get(j).text();
 
 				// Check if the column is not 'Leg distance (NM)'
