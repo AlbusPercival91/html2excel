@@ -5,7 +5,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.apache.poi.ss.usermodel.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import com.html2excel.processor.HrmlDataSelector;
+import com.html2excel.processor.HtmlDataSelector;
 import com.html2excel.processor.ExcelCreator;
 import com.html2excel.processor.DataSaver;
 import java.io.*;
@@ -20,7 +20,7 @@ public class Html2Excel {
 
 		logger.info("Please insert Path to File (Example: C:\\Users\\Serge\\Desktop\\08042024_012308.html" + "\n");
 
-		HrmlDataSelector htmlDataSelector = new HrmlDataSelector();
+		HtmlDataSelector htmlDataSelector = new HtmlDataSelector();
 		ExcelCreator excelCreator = new ExcelCreator();
 		DataSaver dataSaver = new DataSaver();
 

@@ -7,7 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class HrmlDataSelector {
+public class HtmlDataSelector {
 
 	public Document htmlParse(String pathName) throws IOException {
 		Document doc = Jsoup.parse(new File(pathName), "UTF-8");
