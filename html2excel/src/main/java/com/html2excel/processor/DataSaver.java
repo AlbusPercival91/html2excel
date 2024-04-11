@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class DataConverter {
+public class DataSaver {
 
-	public void convertToExcel(Workbook workbook) throws IOException {
+	public void saveToExcel(Workbook workbook) throws IOException {
 		String desktopPath = System.getProperty("user.home") + "/Desktop/";
 
 		try (FileOutputStream fos = new FileOutputStream(desktopPath + "ExcelOutput.xlsx")) {

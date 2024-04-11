@@ -7,7 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import com.html2excel.processor.HrmlDataSelector;
 import com.html2excel.processor.ExcelCreator;
-import com.html2excel.processor.DataConverter;
+import com.html2excel.processor.DataSaver;
 import java.io.*;
 import java.util.Scanner;
 
@@ -20,20 +20,20 @@ public class Html2Excel {
 
 		logger.info("Please insert Path to File (Example: C:\\Users\\Serge\\Desktop\\08042024_012308.html" + "\n");
 
-		HrmlDataSelector selector = new HrmlDataSelector();
+		HrmlDataSelector htmlDataSelector = new HrmlDataSelector();
 		ExcelCreator excelCreator = new ExcelCreator();
-		DataConverter converter = new DataConverter();
+		DataSaver dataSaver = new DataSaver();
 
 		try (Scanner scan = new Scanner(System.in)) {
 			String pathName = scan.nextLine();
 
-			Document doc = selector.htmlParse(pathName);
+			Document doc = htmlDataSelector.htmlParse(pathName);
 
-			Element table = selector.selectTable(doc);
+			Element table = htmlDataSelector.selectTable(doc);
 
 			Workbook workbook = excelCreator.createWorkbook(table);
 
-			converter.convertToExcel(workbook);
+			dataSaver.saveToExcel(workbook);
 		} catch (IOException e) {
 			logger.error("An error occurred while converting HTML to Excel", e);
 		}
