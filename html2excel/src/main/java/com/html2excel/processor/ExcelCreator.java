@@ -20,13 +20,11 @@ public class ExcelCreator {
 	}
 
 	private Sheet createSheet(Workbook workbook) {
-		Sheet sheet = workbook.createSheet("HTML Table");
-		return sheet;
+		return workbook.createSheet("HTML Table");
 	}
 
 	private Row createRow(Sheet sheet) {
-		Row headerRow = sheet.createRow(0);
-		return headerRow;
+		return sheet.createRow(0);
 	}
 
 	private Elements createHeaderRow(Element table, Row headerRow) {
